@@ -8,13 +8,13 @@
 
             <div class="col-lg-7 col-md-6 col-sm-12">
 
-                <h2>Tambah Pelanggan</h2>
+                <h2>Tambah Transaksi</h2>
 
             </div>
 
             <div class="col-lg-5 col-md-6 col-sm-12">
 
-                <a href="/home/data_pelanggan">
+                <a href="/home/data_transaksi">
                     
                     <button class="btn btn-secondary btn-icon float-right" type="buttin"><i class="zmdi zmdi-chevron-left"></i></button>
 
@@ -36,7 +36,7 @@
 
                     <div class="body">
 
-                        <form class="form-horizontal" action="<?= base_url('/home/aksi_tambah_data_pelanggan')?>" method="POST" enctype="multipart/form-data">
+                        <form class="form-horizontal" action="<?= base_url('/home/aksi_tambah_data_transaksi')?>" method="POST" enctype="multipart/form-data">
 
                             <div class="row clearfix">
 
@@ -62,7 +62,7 @@
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
-                                    <label for="nama_orangtua">Nama Orang Tua</label>
+                                    <label for="jam_mulai">Jam Mulai</label>
 
                                 </div>
 
@@ -70,28 +70,7 @@
 
                                     <div class="form-group">
 
-                                        <input type="text" name="nama_orangtua" id="nama_orangtua" placeholder="Nama Orang Tua" class="form-control">
-                                        
-                                    </div>
-
-                                </div>
-                                
-                            </div>
-
-
-                            <div class="row clearfix">
-
-                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
-
-                                    <label for="tanggal">Tanggal Lahir</label>
-
-                                </div>
-
-                                <div class="col-lg-10 col-md-10 col-sm-8">
-
-                                    <div class="form-group">
-
-                                        <input type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="Tanggal Lahir" class="form-control">
+                                        <input type="time" name="jam_mulai" id="jam_mulai" placeholder="Jam Mulai" class="form-control">
                                         
                                     </div>
 
@@ -103,7 +82,7 @@
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
-                                    <label for="nama">Alamat</label>
+                                    <label for="jam_selesai">Jam Selesai</label>
 
                                 </div>
 
@@ -111,7 +90,7 @@
 
                                     <div class="form-group">
 
-                                        <input type="text" name="alamat" id="alamat" placeholder="Alamat" class="form-control">
+                                        <input type="time" name="jam_selesai" id="jam_selesai" placeholder="Jam Selesai" class="form-control">
                                         
                                     </div>
 
@@ -123,7 +102,7 @@
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
-                                    <label for="nama">No Telepon</label>
+                                    <label for="status">Status</label>
 
                                 </div>
 
@@ -131,28 +110,7 @@
 
                                     <div class="form-group">
 
-                                        <input type="text" name="no_telpon" id="no_telpon" placeholder="No Telepon" class="form-control">
-                                        
-                                    </div>
-
-                                </div>
-                                
-                            </div>
-
-
-                            <div class="row clearfix">
-
-                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
-
-                                    <label for="tanggal">Tanggal</label>
-
-                                </div>
-
-                                <div class="col-lg-10 col-md-10 col-sm-8">
-
-                                    <div class="form-group">
-
-                                        <input type="date" name="tanggal" id="tanggal" placeholder="Tanggal" class="form-control">
+                                        <input type="text" name="status" id="status" placeholder="Status" class="form-control">
                                         
                                     </div>
 

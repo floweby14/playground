@@ -137,24 +137,31 @@ class Home extends BaseController{
 
     }
 
-    public function aksi_tambah_pelanggan() {
+    public function aksi_tambah_data_pelanggan() {
 
         if (in_array(session() -> get('level'), [1])) {
 
             $Schema = new Schema();
             $nama = $this->request->getPost('nama');
+            $nama_orangtua = $this->request->getPost('nama_orangtua');
             $tanggal_lahir = $this->request->getPost('tanggal_lahir');
+            $alamat = $this->request->getPost('alamat');
+            $no_telpon = $this->request->getPost('no_telpon');
             $tanggal = $this->request->getPost('tanggal');
             
-            $masukData = array(
+            $pelangganData = array(
                 'nama' => $nama,
+                'nama_orangtua' => $nama_orangtua,
                 'tanggal_lahir' => $tanggal_lahir,
+                'alamat' => $alamat,
+                'no_telpon' => $no_telpon,
                 'tanggal' => $tanggal,
                 
                 
             );
-            $Schema -> insert_data('data_pelanggan', $pelangganData);
-            return redirect()->to('/home/data_pelanggan');
+            $Schema -> insert_data('pelanggan', $pelangganData);
+            // print_r($pelangganData);
+            return redirect()->to('home/pelanggan');
 
         } else {
 
@@ -170,7 +177,7 @@ class Home extends BaseController{
 
             $Schema = new Schema();
             $id_pelanggan = array('id_pelanggan' => $id);
-            $_fetch['pelangganData'] = $Schema -> getWhere('data_pelanggan', $id_pelanggan);
+            $_fetch['pelangganData'] = $Schema -> getWhere('pelanggan', $id_pelanggan);
 
             echo view('layout/_heading');
             echo view('layout/_menu');
@@ -191,22 +198,27 @@ class Home extends BaseController{
 
             $Schema = new Schema();
             $nama = $this->request->getPost('nama');
+            $nama_orangtua = $this->request->getPost('nama_orangtua');
             $tanggal_lahir = $this->request->getPost('tanggal_lahir');
+            $alamat = $this->request->getPost('alamat');
+            $no_telpon = $this->request->getPost('no_telpon');
             $tanggal = $this->request->getPost('tanggal');
-           
             
 
             $where = array('id_pelanggan' => $id_pelanggan);
             $pelangganData = array(
                 'nama' => $nama,
+                'nama_orangtua' => $nama_orangtua,
                 'tanggal_lahir' => $tanggal_lahir,
+                'alamat' => $alamat,
+                'no_telpon' => $no_telpon,
                 'tanggal' => $tanggal,
 
             );
 
             if (in_array(session() -> get('level'), [1])) {
 
-                $Schema -> edit_data('data_pelanggan', $pelangganData, $where);
+                $Schema -> edit_data('pelanggan', $pelangganData, $where);
 
             }
 
@@ -226,10 +238,10 @@ class Home extends BaseController{
 
             $Model = new Schema();
 
-            $where = array('id_album'=>$id);
-            $Model->delete_data('data_pelanggan',$where);
+            $where = array('id_pelanggan'=>$id);
+            $Model->delete_data('pelanggan',$where);
 
-            return redirect()->to('/Home/data_pelanggan/');
+            return redirect()->to('/Home/pelanggan/');
 
         }else{
 
@@ -238,42 +250,69 @@ class Home extends BaseController{
 
     }
 
-    public function data_pengeluaran() {
+    public function data_transaksi() {
 
         if (session() -> get('id') == NULL) {
 
-            return redirect() -> to('/home/data_pengeluaran');
+            return redirect() -> to('/home/data_transaksi');
 
         } else if (session() -> get('id') > 0) {
 
             $Schema = new Schema();
 
-                        // Fetching data
+                    // Fetching data
 
-                        // $on = 'user.level = level.id_level';
+                    // $on = 'user.level = level.id_level';
 
-                        // $_fetch['pengeluaranData'] = $Schema -> visual_table_join2('user', 'level', $on);
-            $_fetch['pengeluaranData'] = $Schema -> visual_table('data_pengeluaran');
+                    // $_fetch['pemasukanData'] = $Schema -> visual_table_join2('user', 'level', $on);
+            $_fetch['transaksiData'] = $Schema -> visual_table('transaksi');
 
             echo view('layout/_heading');
-            echo view('pages/data_pengeluaran', $_fetch);
+            echo view('pages/data_transaksi', $_fetch);
             echo view('layout/_menu');
             echo view('layout/_footer');
+
+        }
+        
+    }
+    public function tambah_data_transaksi() {
+
+        if(in_array(session() -> get('level'), [1])) {
+
+            $Schema = new Schema();
+            
+            echo view('layout/_heading');
+            echo view('layout/_menu');
+            echo view('forms/tambah_data_transaksi');
+            echo view('layout/_footer');
+
+        } else {
+
+            return redirect()->to('/home/');
 
         }
 
     }
 
-    public function tambah_data_pengeluaran() {
+    public function aksi_tambah_data_transaksi() {
 
-        if(in_array(session() -> get('level'), [1])) {
+        if (in_array(session() -> get('level'), [1])) {
 
             $Schema = new Schema();
-
-            echo view('layout/_heading');
-            echo view('layout/_menu');
-            echo view('forms/tambah_data_pengeluaran');
-            echo view('layout/_footer');
+            $nama = $this->request->getPost('nama');
+            $jam_mulai = $this->request->getPost('jam_mulai');
+            $jam_selesai = $this->request->getPost('jam_selesai');
+            $status = $this->request->getPost('status');
+            
+            $transaksiData = array(
+                'nama' => $nama,
+                'jam_mulai' => $jam_mulai,
+                'jam_selesai' => $jam_selesai,
+                'status' => $status
+   
+            );
+            $Schema -> insert_data('transaksi', $transaksiData);
+            return redirect()->to('home/data_transaksi');
 
         } else {
 
@@ -281,38 +320,6 @@ class Home extends BaseController{
 
         }
         
-    }
-
-    public function aksi_tambah_data_pengeluaran() {
-
-        if (in_array(session() -> get('level'), [1])) {
-
-            $Schema = new Schema();
-
-            $tanggal = $this->request->getPost('tanggal');
-            $nama_barang = $this->request->getPost('nama_barang');
-            $keterangan = $this->request->getPost('keterangan');
-            $total = $this->request->getPost('total');
-            $created_by = $this->request->getPost('created_by');
-            $created_at = $this->request->getPost('created_at');
-            
-            $pengeluaranData = array(
-                'tanggal' => $tanggal,
-                'nama_barang' => $nama_barang,
-                'keterangan' => $keterangan,
-                'total' => $total,
-                'created_by' => $created_by,
-                'created_at' => $created_at,
-            );
-            $Schema -> insert_data('data_pengeluaran', $pengeluaranData);
-            return redirect()->to('/home/data_pengeluaran');
-            
-        } else {
-
-            return redirect()->to('/home/');
-            
-        }
-
     }
 
     public function edit_data_pengeluaran($id) {
@@ -373,17 +380,17 @@ class Home extends BaseController{
         
     }
 
-    public function hapus_data_pengeluaran($id) {
+    public function hapus_data_transaksi($id) {
 
         if (in_array(session() -> get('level'), [1])) {
 
             $Model = new Schema();
 
-            $where = array('id_pengeluaran'=>$id);
+            $where = array('id_transaksi'=>$id);
 
-            $Model->delete_data('data_pengeluaran',$where);
+            $Model->delete_data('transaksi',$where);
 
-            return redirect()->to('/Home/data_pengeluaran/');
+            return redirect()->to('/Home/data_transaksi/');
 
         }else{
 
@@ -392,33 +399,33 @@ class Home extends BaseController{
 
     }
 
-    public function data_gaji() {
+    public function permainan() {
 
         if (session() -> get('id') == NULL) {
 
-            return redirect() -> to('/home/data_gaji');
-            
+            return redirect() -> to('/home/permainan');
+
         } else if (session() -> get('id') > 0) {
 
             $Schema = new Schema();
-            
-                            // Fetching data
-            
-                            // $on = 'user.level = level.id_level';
 
-                            // $_fetch['pengeluaranData'] = $Schema -> visual_table_join2('user', 'level', $on);
-            $_fetch['gajiData'] = $Schema -> visual_table('data_gaji');
-            
+                    // Fetching data
+
+                    // $on = 'user.level = level.id_level';
+
+                    // $_fetch['pemasukanData'] = $Schema -> visual_table_join2('user', 'level', $on);
+            $_fetch['permainanData'] = $Schema -> visual_table('permainan');
+
             echo view('layout/_heading');
-            echo view('pages/data_gaji', $_fetch);
+            echo view('pages/data_permainan', $_fetch);
             echo view('layout/_menu');
             echo view('layout/_footer');
-            
-        }
 
+        }
+        
     }
 
-    public function tambah_data_gaji() {
+    public function tambah_data_permainan() {
 
         if(in_array(session() -> get('level'), [1])) {
 
@@ -426,56 +433,54 @@ class Home extends BaseController{
             
             echo view('layout/_heading');
             echo view('layout/_menu');
-            echo view('forms/tambah_data_gaji');
+            echo view('forms/tambah_data_permainan');
             echo view('layout/_footer');
-            
+
         } else {
 
             return redirect()->to('/home/');
-            
+
         }
 
     }
 
-    public function aksi_tambah_data_gaji() {
+    public function aksi_tambah_data_permainan() {
 
         if (in_array(session() -> get('level'), [1])) {
 
             $Schema = new Schema();
-
-            $nama = $this->request->getPost('nama');
-            $tanggal = $this->request->getPost('tanggal');
-            $keterangan = $this->request->getPost('keterangan');
-            $total = $this->request->getPost('total');
-
-            $gajiData = array(
-                'nama' => $nama,
-                'tanggal' => $tanggal,
-                'keterangan' => $keterangan,
-                'total' => $total,
+            $nama_permainan = $this->request->getPost('nama_permainan');
+            $harga = $this->request->getPost('harga');
+            $created_at = $this->request->getPost('created_at');
+            
+            $permainanData = array(
+                'nama_permainan' => $nama_permainan,
+                'harga' => $harga,
+                'created_at' => date('Y,m-d H:i:s')
+                
+                
             );
-            $Schema -> insert_data('data_gaji', $gajiData);
-            return redirect()->to('/home/data_gaji');
+            $Schema -> insert_data('permainan', $permainanData);
+            return redirect()->to('home/permainan');
 
         } else {
 
             return redirect()->to('/home/');
 
         }
-
+        
     }
 
-    public function hapus_data_gaji($id) {
-
+    public function hapus_data_permainan($id)
+    {
         if (in_array(session() -> get('level'), [1])) {
 
             $Model = new Schema();
 
-            $where = array('id_gaji'=>$id);
+            $where = array('id_permainan'=>$id);
+            $Model->delete_data('permainan',$where);
 
-            $Model->delete_data('data_gaji',$where);
-
-            return redirect()->to('/Home/data_gaji/');
+            return redirect()->to('/Home/permainan/');
 
         }else{
 
@@ -504,7 +509,7 @@ class Home extends BaseController{
         $model=new Schema();
         $awal= $this->request->getPost('awal');
         $akhir= $this->request->getPost('akhir');
-        $kui['duar']=$model->filterTransaksi('data_pemasukan', 'data_pengeluaran', 'data_gaji',$awal,$akhir);
+        $kui['duar']=$model->filterTransaksi('data_transaksi', 'data_pemainan',$awal,$akhir);
 
         echo view('laporan/laporan_keuangan',$kui);
     }

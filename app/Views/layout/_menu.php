@@ -11,7 +11,7 @@
             <a href="/home/">
                 
                 <img src="<?php echo base_url('assets') ?>/dashboard/hammer.png" style="width: 30px; height: 30px;" alt="logo_sph">
-                <span class="m-l-7" style="font-size: 20px;">Keuangan TNMD</span>
+                <span class="m-l-7" style="font-size: 20px;">Playground</span>
             
             </a>
 
@@ -40,7 +40,9 @@
                
                     <li class="active"><a href="/home/user"><i class="fas fa-user-gear"></i><span>Data User</span></a></li>
                     <li class="active"><a href="/home/pelanggan"><i class="fas fa-user-gear"></i><span>Data Pelanggan</span></a></li>
+                    <li class="active"><a href="/home/data_transaksi"><i class="fas fa-user-gear"></i><span>Transaksi</span></a></li>
                     <li class="active"><a href="/home/permainan"><i class="fas fa-user-gear"></i><span>Permainan</span></a></li>
+                    <li class="active"><a href="/home/permainan"><i class="fas fa-user-gear"></i><span>Laporan</span></a></li>
                     <li class="active"><a href="/home/logout"><i class="fas fa-power-off"></i><span>Logout</span></a></li>
             
 

@@ -60,6 +60,26 @@
                                 
                             </div>
 
+                            <div class="row clearfix">
+
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+
+                                    <label for="nama_orangtua">Nama Orangtua<span style="color: #ff0000;">*</span></label>
+
+                                </div>
+
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+
+                                    <div class="form-group">
+
+                                        <input type="text" value="<?php echo $pelangganData -> nama_orangtua ?>" name="nama_orangtua" id="nama_orangtua" placeholder="Nama Orangtua " class="form-control" required>
+
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+
 
                             <div class="row clearfix">
 
@@ -85,7 +105,47 @@
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
-                                    <label for="nama">Tanggal <span style="color: #ff0000;">*</span></label>
+                                    <label for="alamat">Alamat <span style="color: #ff0000;">*</span></label>
+
+                                </div>
+
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+
+                                    <div class="form-group">
+
+                                        <input type="text" value="<?php echo  $pelangganData -> alamat ?>" name="alamat" id="alamat" placeholder="Alamat" class="form-control" required>
+
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+
+                            <div class="row clearfix">
+
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+
+                                    <label for="no_telpon">No Telepon <span style="color: #ff0000;">*</span></label>
+
+                                </div>
+
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+
+                                    <div class="form-group">
+
+                                        <input type="text" value="<?php echo  $pelangganData -> no_telpon ?>" name="no_telpon" id="no_telpon" placeholder="No Telepon" class="form-control" required>
+
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+
+                            <div class="row clearfix">
+
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+
+                                    <label for="tanggal">Tanggal <span style="color: #ff0000;">*</span></label>
 
                                 </div>
 

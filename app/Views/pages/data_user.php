@@ -40,6 +40,7 @@
                                     <tr style="text-align: center;">
 
                                         <th>No</th>
+                                        <th>Kode Member</th>
                                         <th>Username</th>
                                         <th>Nama</th>
                                         <th>Level</th>
@@ -55,6 +56,7 @@
                                         <tr align="center">
 
                                             <td><?php echo $no++ ?></td>
+                                            <td><?php echo $data -> kode_member ?></td>
                                             <td><?php echo $data -> username ?></td>
                                             <td><?php echo $data -> nama_user ?></td>
                                             <td><?php echo ucwords($data -> level) ?></td>
